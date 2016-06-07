@@ -25,3 +25,7 @@ _.forEach(columnTitles, (title) => {
   console.log(`${title}:`, strategy.getCellByTitle(title).value());
 });
 ```
+
+## License
+
+MIT © [Andre Stehle](https://github.com/ansteh)
