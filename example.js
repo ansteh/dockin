@@ -1,11 +1,6 @@
-[![Build Status](https://api.travis-ci.org/ansteh/dockin.svg?branch=master)](https://travis-ci.org/ansteh/dockin)
-
-intuitive xlsx spreadsheet parser wrapper
-
-```js
 'use strict';
-const dockin = require('dockin');
-const Document = dockin.Document;
+const indoc = require('./index.js');
+const Document = indoc.Document;
 const path = require('path');
 const _ = require('lodash');
 
@@ -24,4 +19,3 @@ console.log(strategy.getCellByTitle('Control Titel').value());
 _.forEach(columnTitles, (title) => {
   console.log(`${title}:`, strategy.getCellByTitle(title).value());
 });
-```
