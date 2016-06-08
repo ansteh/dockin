@@ -48,7 +48,7 @@ const Sheet = (content) => {
 
   let getColumnTitles = () => {
     return _.map(columnNames, (name) => {
-      return getCell(name, '1').value();
+      return _.result(getCell(name, '1'), 'value', '');
     });
   };
 
