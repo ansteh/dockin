@@ -1,6 +1,6 @@
 {
   "name": "dockin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "intuitive xlsx spreadsheet parser wrapper",
   "main": "index.js",
   "scripts": {
