@@ -139,7 +139,8 @@ const Row = (titles, cells) => {
   };
 
   return {
-    getCellByTitle: getCellByTitle
+    getCellByTitle: getCellByTitle,
+    getTitle: () => titles
   };
 };
 
