@@ -99,8 +99,9 @@ const Sheet = (content) => {
   });
 
   let findRowByColumnTitleThatIncludesText = _.curry((columTitle, text) => {
+    text = text.toLowerCase();
     return searchRowByColumnTitle((value) => {
-      return _.includes(value, text);
+      return _.includes(value.toLowerCase(), text);
     }, columTitle);
   });
 
