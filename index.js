@@ -90,15 +90,18 @@ const Sheet = (content) => {
 
   let valuesOfRows = getValuesOfRows();
 
-  let searchRowByColumnTitle = _.curry((search, columTitle) => {
+  let getColumnBy = (columTitle) => {
     let columnIndex = _.findIndex(columnTitles, title => title === columTitle);
-    //console.log('columnIndex', columnIndex, columTitle, columnTitles);
-    let targets = _.map(valuesOfRows, row => row[columnIndex]);
-    let index = _.findIndex(targets, search);
+    return _.map(valuesOfRows, row => row[columnIndex]);
+  };
+
+  let searchRowByColumnTitle = _.curry((search, columTitle) => {
+    let column = getColumnBy(columTitle);
+    let index = _.findIndex(column, search);
     return createRow(_.get(rows, index));
   });
 
-  let findRowByColumnTitleThatIncludesText = _.curry((columTitle, text) => {
+  let findRow = _.curry((columTitle, text) => {
     if(text) text = text.toLowerCase();
     return searchRowByColumnTitle((value) => {
       if(value) value = value.toLowerCase();
@@ -106,13 +109,26 @@ const Sheet = (content) => {
     }, columTitle);
   });
 
+  let findRows = _.curry((columTitle, text) => {
+    let column = getColumnBy(columTitle);
+    if(text) text = text.toLowerCase();
+    return _.reduce(column, (all, value, index) => {
+      if(value) value = value.toLowerCase();
+      if(_.includes(value, text)) {
+        all.push(createRow(_.get(rows, index)));
+      }
+      return all;
+    }, []);
+  });
+
   return {
     getCell: getCell,
     getRows: getRows,
     getValuesOfRows: getValuesOfRows,
     getTitles: () => columnTitles,
-    searchRowByColumnTitle: searchRowByColumnTitle,
-    findRowByColumnTitleThatIncludesText: findRowByColumnTitleThatIncludesText
+    //searchRowByColumnTitle: searchRowByColumnTitle,
+    findRow: findRow,
+    findRows: findRows
   }
 };
 
@@ -142,7 +158,7 @@ const Row = (titles, cells) => {
 
   return {
     getCellByTitle: getCellByTitle,
-    getTitle: () => titles
+    getTitles: () => titles
   };
 };
 
