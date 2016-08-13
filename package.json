@@ -1,11 +1,9 @@
 {
   "name": "dockin",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "intuitive xlsx spreadsheet parser wrapper",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "engines": {
     "node": ">=4"
   },
@@ -20,10 +18,10 @@
     "url": "https://github.com/ansteh/dockin/issues"
   },
   "dependencies": {
-    "lodash": "^4.13.1",
+    "adler-32": "^0.4.0",
+    "crc-32": "^0.4.1",
+    "lodash": "^4.15.0",
     "xlsx": "^0.8.0"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }
